@@ -4,17 +4,16 @@ body {
 }
 
 .container {
-    width: 1000px;
+    width: 80%;
     margin: auto;
-    position: relative; /* Add this line */
+    position: relative; 
 }
 
-/* Style for the image in the top right corner */
-.container img {
+.container .cart {
     position: absolute;
     top: 0;
     right: 0;
-    width: 100px; /* Adjust the width as needed */
+    width: 100px;
 }
 
 header {
@@ -105,4 +104,4 @@ header .shopping span {
 
 .active .container{
     transform: translateX(-200px);
-}
+} 
