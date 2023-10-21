@@ -57,7 +57,7 @@ header .shopping span {
 .card{
     position: fixed;
     top: 0;
-    left: calc(100% - 500px);
+    left: 100%;
     width: 500px;
     background-color: rgb(75, 71, 71);
     height: 100vh;
@@ -91,4 +91,18 @@ header .shopping span {
     align-items: center;
     font-weight: bold;
     cursor: pointer;
+}
+
+.card .checkOut div:nth-child(2){
+    background-color: rgb(41, 40, 40);
+    color: #fff;
+
+}
+
+.active .card{
+    left: calc(100% - 500px);
+}
+
+.active .container{
+    transform: translateX(-200px);
 }
