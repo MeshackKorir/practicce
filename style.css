@@ -16,6 +16,19 @@ body {
     width: 100px;
 }
 
+.add-to-cart {
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-to-cart:hover {
+    background-color: #005F79;
+}
+
 header {
     display: flex;
     grid-template-columns: 1fr 50px;

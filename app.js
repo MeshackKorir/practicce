@@ -1,20 +1,59 @@
+// let openShopping = document.querySelector('.shopping');
+// let closeShopping = document.querySelector('.closeShopping');
+// let list = document.querySelector('.product');
+// let listCard = document.querySelector('.listCard')
+// let body = document.querySelector('body');
+// let total = document.querySelector('.total');
+// let quantity = document.querySelector('.quantity')
+// // let display_product = document.querySelector('.product')
+
+
+// openShopping.addEventListener('click', ()=>{
+//     body.classList.add('active');
+// })
+
+// closeShopping.addEventListener('click', ()=>{
+//     body.classList.remove('active');
+// })
+
+
+
+// let listCards = [];
+// function initApp(){
+//     let display_product = document.querySelector('.product')
+
+//     products.forEach(product =>{
+//         newDiv = document.add('item')
+//         newDiv = document.createElement('div');
+//         newDiv.innerHTML = `
+//         <img src="${product.url}" width="250px"/>
+//         <p>${product.name}</p>
+//         <p>${product.price}</p>
+//         <button onClick="addToCard">Add to Card</button>
+//         `;
+//         list.appendChild(newDiv);
+//     })
+// }
+
+// initApp();
+
+
+
 let openShopping = document.querySelector('.shopping');
 let closeShopping = document.querySelector('.closeShopping');
 let list = document.querySelector('.product');
-let listCard = document.querySelector('.listCard')
+let listCard = document.querySelector('.listCard');
 let body = document.querySelector('body');
 let total = document.querySelector('.total');
-let quantity = document.querySelector('.quantity')
-// let display_product = document.querySelector('.product')
+let quantity = document.querySelector('.quantity');
 
-
-openShopping.addEventListener('click', ()=>{
+openShopping.addEventListener('click', () => {
     body.classList.add('active');
-})
+});
 
-closeShopping.addEventListener('click', ()=>{
+closeShopping.addEventListener('click', () => {
     body.classList.remove('active');
-})
+});
 
 let products =[
     {
@@ -60,22 +99,59 @@ let products =[
     }
 ];
 
-// let listCards = [];
-function initApp(){
-    let display_product = document.querySelector('.product')
+let listCards = [];
 
-    products.forEach(product =>{
+function initApp() {
+    // Clear the existing content in the 'product' container
+    list.innerHTML = '';
 
+    products.forEach(product => {
+        // Create a new 'div' element for each product
         let newDiv = document.createElement('div');
         newDiv.innerHTML = `
-        <img src="${product.url}" width="250px"/>
-        <p>${product.name}</p>
-        <p>${product.price}</p>
-
+            <img src="${product.url}" width="250px"/>
+            <p>${product.name}</p>
+            <p>${product.price}</p>
+            <button data-id="${product.id}" class="add-to-cart">Add to Cart</button>
         `;
+
+        // Add an event listener to the "Add to Cart" button
+        newDiv.querySelector('.add-to-cart').addEventListener('click', addToCart);
+
         list.appendChild(newDiv);
-    })
+    });
+}
+
+function addToCart(event) {
+    const productId = parseInt(event.target.getAttribute('data-id'));
+
+    // Find the product with the given ID
+    const selectedProduct = products.find(product => product.id === productId);
+
+    if (selectedProduct) {
+        // Add the selected product to the 'listCard' and update the total and quantity
+        listCards.push(selectedProduct);
+        updateCart();
+    }
+}
+
+function updateCart() {
+    // Clear the existing content in the 'listCard' container
+    listCard.innerHTML = '';
+
+    let cartTotal = 0;
+    quantity.textContent = listCards.length;
+
+    listCards.forEach(product => {
+        cartTotal += product.price;
+        let cartItem = document.createElement('div');
+        cartItem.innerHTML = `
+            <p>${product.name} - ${product.price}</p>
+        `;
+        listCard.appendChild(cartItem);
+    });
+
+    total.textContent = cartTotal;
 }
 
 initApp();
-
